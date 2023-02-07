@@ -1,0 +1,26 @@
+SERVER=$1
+
+# Build with custom url
+yarn run build
+
+REMOTE_PARENT=/root/cps
+TARGET=/var/www/html/customer
+ZIP_NAME=customer.tar.gz
+
+# Compress to tar
+cd build
+tar -czf ../build.tar.gz .
+cd ..
+
+# deploy to server
+scp build.tar.gz root@$SERVER:$REMOTE_PARENT/$ZIP_NAME
+
+rm -f build.tar.gz
+
+# Extract tar file
+ssh -t root@$SERVER "
+            rm -Rf $TARGET;
+            mkdir -p $TARGET;
+            tar -xzf $REMOTE_PARENT/$ZIP_NAME -C $TARGET/;
+            rm -f $REMOTE_PARENT/$ZIP_NAME
+"

@@ -1,0 +1,38 @@
+$font : 'fnt-';
+
+$top : 'top-';
+
+$bottom : 'btm-';
+
+@for $i from 1 through 40 {
+  .#{$font}#{$i} {
+      font-size : #{$i}px;
+  }
+}
+
+@for $i from 1 through 40 {
+  .#{$top}#{$i} {
+      top : #{$i}px;
+      position : relative;
+  }
+}
+
+@for $i from 1 through 40 {
+  .#{$bottom}#{$i} {
+      bottom : #{$i}px;
+      position : relative;
+  }
+}
+
+.cell-check {
+  right: 20px;
+  font-size: 18px;
+  top: 4px;
+  position: relative;
+  color: green !important;
+}
+
+.rht-20 {
+  right: 20px;
+  position: relative;
+}
